@@ -1,0 +1,29 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Spring Boot
+application.properties
+application.yml
+
+# Firebase (CRITICAL)
+firebase-service-account.json
+
+# Environment variables
+.env
+
