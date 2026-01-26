@@ -1,4 +1,4 @@
-import StarBorder from './components/StarBorder';
+import Landing from './components/Landing';
 import Dock from './components/Dock';
 
 import {
@@ -14,46 +14,30 @@ function App() {
     {
       icon: <VscHome size={18} />,
       label: 'Home',
-      onClick: () => alert('Home!')
+      action: 'home'
     },
     {
       icon: <VscArchive size={18} />,
       label: 'Archive',
-      onClick: () => alert('Archive!')
+      action: 'archive'
     },
     {
       icon: <VscAccount size={18} />,
       label: 'Profile',
-      onClick: () => alert('Profile!')
+      action: 'profile'
     },
     {
       icon: <VscSettingsGear size={18} />,
       label: 'Settings',
-      onClick: () => alert('Settings!')
+      action: 'settings'
     }
   ];
 
   return (
     <div style={styles.app}>
 
-      {/* Quote + Button */}
-      <div style={styles.quoteContainer}>
-        <h1 style={styles.quote}>
-          Your journey to fitness starts here.
-        </h1>
-
-        {/* Star Border Button ONLY */}
-        <div style={{ marginTop: '28px' }}>
-          <StarBorder
-            as="button"
-            color="white"
-            speed="4s"
-            onClick={() => alert('Get Started')}
-          >
-            Get Started
-          </StarBorder>
-        </div>
-      </div>
+      {/* Screens */}
+      <Landing />
 
       {/* Dock */}
       <div style={styles.dockWrapper}>
@@ -75,26 +59,6 @@ const styles = {
     backgroundColor: '#000',
     position: 'relative',
     paddingBottom: '80px',
-  },
-
-  quoteContainer: {
-    position: 'absolute',
-    top: '30%',
-    width: '100%',
-    textAlign: 'center',
-    transform: 'translateY(-50%)',
-  },
-
-  quote: {
-    fontSize: '2.5rem',
-    fontWeight: 600,
-    letterSpacing: '0.5px',
-    color: '#ffffff',
-    opacity: 0.6,
-    textShadow: `
-      0 0 10px rgba(255,255,255,0.25),
-      0 0 30px rgba(255,255,255,0.15)
-    `,
   },
 
   dockWrapper: {
