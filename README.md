@@ -1,5 +1,4 @@
 # Fitness Tracker 🏋️‍♂️
-
 A fitness tracking open source application.
 
 This is an **MVP-first project** — features are added incrementally and tested properly.
