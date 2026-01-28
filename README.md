@@ -1,6 +1,6 @@
-# Fitness Tracker 🏋️‍♂️
+# FitFlow
 
-A fitness tracking open source application.
+An open-source fitness tracking platform where developers learn, build, and contribute together.
 
 This is an **MVP-first project** — features are added incrementally and tested properly.
 
@@ -15,43 +15,50 @@ This isn't just a repo —it's a **real-world project designed for learning and 
 - ✅ Practice Git workflows, CI/CD, and testing
 - ✅ Join a friendly community that helps each other learn
 
-**You're in the right place!** 🎉
+**You're in the right place!** 
 
 > ⭐ **Like what you see?** Star the repo to help others discover it!
 
 ---
 
-## 🚀 MVP Feature 1: Store Workouts & Exercises
+## 🧠 Tech Stack
+- Backend: Spring Boot, JPA, MySQL
+- Frontend: React
+- Auth: JWT (planned soon)
+- Testing: JUnit (planned soon)
+- DevOps: Docker (planned soon)
+ 
+---
 
-### ✅ What’s Implemented
-
-The first MVP allows a **user to store workouts and their exercises**.
-
-**Core capabilities:**
-- Create a workout for a user
-- Add multiple exercises to a workout
-- Persist data using a relational database
-- Clean separation of concerns using layered architecture
+## ✨ Features
+- Create workouts
+- Add exercises to workouts
+- Track sets, reps, duration
+- More coming soon...
 
 ---
 
-## 🧱 Architecture
+## 🛣️ Roadmap
+- [x] Workout & Exercise entities
+- [ ] REST APIs
+- [ ] Authentication
+- [ ] Frontend UI
+- [ ] Testing
+- [ ] Docker support
 
-The project follows a standard backend structure:
+---
 
+## 🤝 Contributing
+We love contributions from beginners and experienced devs!
 
-## Setup
+Please read:
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
-1. Clone the repository
+---
 
-3. Edit `.env` and add your Supabase credentials
-4. Run the application
+## 🧑‍💻 Getting Started
 ```bash
-   ./mvnw spring-boot:run
-```
-
-## Environment Variables
-
-- `SUPABASE_DB_URL` - Your Supabase database URL
-- `SUPABASE_DB_USER` - Your Supabase database username
-- `SUPABASE_DB_PASSWORD` - Your Supabase database password
+git clone https://github.com/your-username/FitFlow.git
+cd FitFlow
+Edit `.env` and add your Supabase credentials
