@@ -13,7 +13,7 @@ This isn't just a repo —it's a **real-world project designed for learning and 
 - ✅ Build experience with Java development (Spring-Boot)
 - ✅ Work with modern web tech (React)
 - ✅ Practice Git workflows, CI/CD, and testing
-- ✅ Join a friendly community that helps each other learn
+- ✅ Join a friendly community that helps each other learn.
 
 **You're in the right place!** 🎉
 
