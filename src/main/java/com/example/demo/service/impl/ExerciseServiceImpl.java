@@ -79,7 +79,10 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public void deleteExercise(Long exerciseId) {
-
+       if(!exerciseRepository.existsById(exerciseId)){
+           throw new RuntimeException("Exercise Not Found");
+       }
+       exerciseRepository.deleteById(exerciseId);
     }
 
     @Override

@@ -8,7 +8,7 @@ function WorkoutBuilder() {
   const [name, setName] = useState("");
   const [sets, setSets] = useState("");
   const [value, setValue] = useState("");
-  const [type, setType] = useState("reps");
+  const [Type, setType] = useState("reps");
 
   const [exercises, setExercises] = useState([]);
   const [deletingId, setDeletingId] = useState(null);
@@ -38,18 +38,18 @@ function WorkoutBuilder() {
     if (!name || !sets || !workoutId) return;
 
     const payload =
-      type === "reps"
+      Type === "reps"
         ? {
             name,
             sets: Number(sets),
-            type: "REP_BASED",
+            Type: "REP_BASED",
             reps: Number(value),
             duration: null,
           }
         : {
             name,
             sets: Number(sets),
-            type: "TIME_BASED",
+            Type: "TIME_BASED",
             reps: null,
             duration: Number(value),
           };
@@ -83,6 +83,8 @@ function WorkoutBuilder() {
   }
 
   async function deleteExercise(exerciseId) {
+    if(!exerciseId) return;
+
     const confirmed = window.confirm(
       "Are you sure you want to delete this exercise?"
     );
@@ -93,7 +95,7 @@ function WorkoutBuilder() {
       setDeletingId(exerciseId);
 
       const res = await fetch(
-        `http://localhost:8080/api/workout/${workoutId}/exercises/${exerciseId}`,
+        `http://localhost:8080/api/workout/exercises/${exerciseId}`,
         {
           method: "DELETE",
         }
@@ -160,7 +162,7 @@ function WorkoutBuilder() {
             <input
               style={styles.input}
               type="number"
-              placeholder={type === "reps" ? "Target reps" : "Seconds"}
+              placeholder={Type === "reps" ? "Target reps" : "Seconds"}
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />
@@ -168,13 +170,13 @@ function WorkoutBuilder() {
 
           <div style={styles.type}>
             <button
-              style={type === "reps" ? styles.activeMode : styles.typeBtn}
+              style={Type === "reps" ? styles.activeMode : styles.typeBtn}
               onClick={() => setType("reps")}
             >
               Reps Based
             </button>
             <button
-              style={type === "time" ? styles.activeMode : styles.typeBtn}
+              style={Type === "time" ? styles.activeMode : styles.typeBtn}
               onClick={() => setType("time")}
             >
               Time Based
@@ -199,10 +201,10 @@ function WorkoutBuilder() {
         {exercises.map((ex) => (
           <div key={ex.id} style={styles.exerciseItem}>
             <div>
-              <strong>{ex.name}</strong>
+              <strong>{ex.name}  •  </strong>
               <span>
                 {ex.sets} sets •{" "}
-                {ex.type === "REP_BASED"
+                {ex.Type === "REP_BASED"
                   ? `${ex.reps} reps`
                   : `${ex.duration} sec`}
               </span>

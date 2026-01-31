@@ -47,7 +47,7 @@ public class WorkoutMapper {
                         exDto.setId(ex.getId());
                         exDto.setName(ex.getName());
                         exDto.setSets(ex.getSets());
-                        exDto.setWorkoutType(ex.getType());
+                        exDto.setType(ex.getType());
                         return exDto;
                     })
                     .collect(Collectors.toList());

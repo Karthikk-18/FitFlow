@@ -17,7 +17,7 @@ public class ExerciseRequestDto {
     private int sets;
 
     @NotNull
-    private ExerciseType type;
+    private ExerciseType Type;
 
     @Min(1)
     private Integer reps;

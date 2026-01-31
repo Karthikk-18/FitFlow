@@ -10,7 +10,7 @@ public class ExerciseResponseDto {
     private Long id;
     private String name;
     private int sets;
-    private ExerciseType workoutType;
+    private ExerciseType Type;
     private Integer reps;
     private Integer duration;
 }

@@ -11,7 +11,7 @@ public class ExerciseMapper {
           dto.setId(exercise.getId());
           dto.setName(exercise.getName());
           dto.setSets(exercise.getSets());
-          dto.setWorkoutType(exercise.getType());
+          dto.setType(exercise.getType());
           dto.setReps(exercise.getReps());
           dto.setDuration(exercise.getDuration());
 
