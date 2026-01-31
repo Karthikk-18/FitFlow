@@ -79,11 +79,17 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public void deleteExercise(Long exerciseId) {
-
+        if (!exerciseRepository.existsById(exerciseId)) {
+            throw new RuntimeException("Exercise not found");
+        }
+        exerciseRepository.deleteById(exerciseId);
     }
 
     @Override
     public List<ExerciseResponseDto> getExercisesByWorkoutId(Long workoutId) {
-        return List.of();
+        return exerciseRepository.findByWorkoutId(workoutId)
+                .stream()
+                .map(com.example.demo.mapper.ExerciseMapper::toResponseDto)
+                .toList();
     }
 }

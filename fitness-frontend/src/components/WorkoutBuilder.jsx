@@ -25,7 +25,7 @@ function WorkoutBuilder() {
       });
 
       const data = await res.json();
-      setWorkoutId(data.id); 
+      setWorkoutId(data.id);
     } catch (err) {
       console.error("Failed to create workout", err);
     } finally {
@@ -35,41 +35,45 @@ function WorkoutBuilder() {
 
   async function addExercise() {
     if (!name || !sets || !workoutId) return;
-    
+
     let payload;
-    
+
     if (type === "reps") {
-     payload = {
-      name: name,
-      sets: Number(sets),
-      type: "REP_BASED",
-      reps: Number(value),
-      duration: null,
-     };
+      payload = {
+        name: name,
+        sets: Number(sets),
+        type: "REP_BASED",
+        reps: Number(value),
+        duration: null,
+      };
     } else {
       payload = {
-      name: name,
-      sets: Number(sets),
-      type: "TIME_BASED",
-      reps: null,
-      duration: Number(value),
-    };
-  }
+        name: name,
+        sets: Number(sets),
+        type: "TIME_BASED",
+        reps: null,
+        duration: Number(value),
+      };
+    }
 
     try {
-      const res = await fetch(`http://localhost:8080/api/workout/${workoutId}/exercises`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `http://localhost:8080/api/workout/${workoutId}/exercises`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
 
-      if(!res.ok){
+      if (!res.ok) {
         const errorText = await res.text();
-        console.error("Failed to add exercise :",errorText);
+        console.error("Failed to add exercise :", errorText);
         return;
       }
 
-      setExercises(prev => [...prev,payload]);
+      const savedExercise = await res.json();
+      setExercises((prev) => [...prev, savedExercise]);
 
       setName("");
       setSets("");
@@ -79,11 +83,31 @@ function WorkoutBuilder() {
     }
   }
 
+  async function deleteExercise(exerciseId) {
+    if (!window.confirm("Are you sure you want to delete this exercise?"))
+      return;
+
+    try {
+      const res = await fetch(
+        `http://localhost:8080/api/workout/exercises/${exerciseId}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      if (res.ok) {
+        setExercises((prev) => prev.filter((ex) => ex.id !== exerciseId));
+      } else {
+        console.error("Failed to delete exercise");
+      }
+    } catch (err) {
+      console.error("Error deleting exercise", err);
+    }
+  }
+
   return (
     <div style={styles.wrapper}>
-      <h2 style={styles.title}>
-        {title || "Create Workout"}
-      </h2>
+      <h2 style={styles.title}>{title || "Create Workout"}</h2>
 
       <input
         style={styles.workoutInput}
@@ -162,12 +186,20 @@ function WorkoutBuilder() {
       </div>
 
       <div style={styles.list}>
-        {exercises.map((ex, index) => (
-          <div key={index} style={styles.exerciseItem}>
-            <strong>{ex.name}</strong>
+        {exercises.map((ex) => (
+          <div key={ex.id} style={styles.exerciseItem}>
+            <div style={styles.exerciseHeader}>
+              <strong>{ex.name}</strong>
+              <button
+                style={styles.deleteBtn}
+                onClick={() => deleteExercise(ex.id)}
+              >
+                Delete
+              </button>
+            </div>
             <span>
               {ex.sets} sets •{" "}
-              {ex.type === "REP_BASED"
+              {ex.workoutType === "REP_BASED"
                 ? `${ex.reps} reps`
                 : `${ex.duration} sec`}
             </span>
@@ -235,7 +267,7 @@ const styles = {
     gap: "12px",
   },
 
-   type: {
+  type: {
     display: "flex",
     gap: "10px",
     marginBottom: "14px",
@@ -303,5 +335,22 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "4px",
+  },
+
+  exerciseHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  deleteBtn: {
+    background: "transparent",
+    border: "1px solid rgba(239, 68, 68, 0.5)",
+    color: "#ef4444",
+    padding: "4px 8px",
+    borderRadius: "6px",
+    fontSize: "12px",
+    cursor: "pointer",
+    transition: "all 0.2s",
   },
 };
