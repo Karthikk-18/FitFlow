@@ -62,6 +62,5 @@ public class WorkoutController {
             @PathVariable Long exerciseId){
         exerciseService.deleteExercise(exerciseId);
         return ResponseEntity.noContent().build();
-        hey
     }
 }
