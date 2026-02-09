@@ -44,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
 
         User savedUser = userRepository.save(user);
 
-        String token = JwtUtil.generateToken(
+        String token = jwtUtil.generateToken(
                 savedUser.getId(),
                 savedUser.getUsername(),
                 savedUser.getEmail()
@@ -68,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
             throw new BadCredentialsException("Invalid Credentials");
         }
 
-        String token = JwtUtil.generateToken(
+        String token = jwtUtil.generateToken(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail()
