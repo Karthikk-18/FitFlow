@@ -15,7 +15,7 @@ This isn't just a repo —it's a **real-world project designed for learning and 
 - ✅ Practice Git workflows, CI/CD, and testing
 - ✅ Join a friendly community that helps each other learn.
 
-**You're in the right place!** 🎉
+**You're in the right place!** 
 
 > ⭐ **Like what you see?** Star the repo to help others discover it!
 
