@@ -40,7 +40,7 @@ This isn't just a repo —it's a **real-world project designed for learning and 
 
 ## 🛣️ Roadmap
 - [x] Workout & Exercise entities
-- [ ] REST APIs
+- [x] REST APIs
 - [ ] Authentication
 - [ ] Frontend UI
 - [ ] Testing
